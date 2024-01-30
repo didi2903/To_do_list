@@ -1,34 +1,39 @@
-const gumb = document.getElementById("gumb");
-gumb.addEventListener("click", noviZadatak);
+document.getElementById("gumb").addEventListener("click", addNewTask);
+document.getElementById("gumb").addEventListener("click", clearInput);
 
-function brisi(e) {
+function addNewTask() {
+    let newDiv = document.createElement("div");
+    let p = document.createElement("p");
+    let i = document.createElement("i");
+    let input = document.getElementById("input").value;
+
+    if (input == "") {
+        alert("Enter a task!");
+    }   
+    else {
+        document.getElementById("container2").appendChild(newDiv);
+
+        newDiv.appendChild(p);
+        newDiv.appendChild(i);
+        newDiv.classList.add("divFlex");
+
+        p.innerHTML = input;
+        i.classList.add("fa-solid");
+        i.classList.add("fa-x");
+
+        i.addEventListener("click", deleteTask);
+        p.addEventListener("click", crossTask);
+    } 
+}
+
+function clearInput() {
+    input.value = "";
+}
+
+function deleteTask(e) {
     e.target.parentElement.remove();
 }
 
-function prekrizi(e) {
+function crossTask(e) {
     e.target.classList.toggle("obavljeno");
-}
-
-// Funkcija koja kreira listu user inputa
-function noviZadatak() {
-    const ul = document.getElementById("ul");
-    let newLi = document.createElement("li");
-    let zadatak = document.getElementById("input").value;
-    newLi.innerHTML = zadatak;
-    ul.appendChild(newLi);
-    let x = document.createElement("span");
-    x.innerHTML = "\u00d7";
-    newLi.appendChild(x);
-
-    //Funkcija koja briše element
-    x.addEventListener("click", brisi);
-    
-    newLi.addEventListener("click", prekrizi);
-
-}
-// Funkcija koja prazni input nakon clicka
-gumb.addEventListener("click", brisiInput);
-function brisiInput() {
-    let input = document.getElementById("input");
-    input.value = "";
 }
