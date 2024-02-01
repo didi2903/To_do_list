@@ -23,6 +23,8 @@ function addNewTask() {
 
         i.addEventListener("click", deleteTask);
         p.addEventListener("click", crossTask);
+        
+        localStorage.setItem("data", document.getElementById("container2").innerHTML);
     } 
 }
 
@@ -37,3 +39,9 @@ function deleteTask(e) {
 function crossTask(e) {
     e.target.classList.toggle("obavljeno");
 }
+
+function showData() {
+    document.getElementById("container2").innerHTML.localStorage.getItem("data");
+}
+
+showData();
